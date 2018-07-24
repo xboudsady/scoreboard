@@ -1,3 +1,24 @@
+// ******  Array's of Players  ***** //
+
+var PLAYERS = [
+    {
+        name: "Seth Boudsady",
+        score: 31,
+        id: 1,
+    },
+    {
+        name: "Fanny Yan",
+        score: 33,
+        id: 2,
+    },
+    {
+        name: "Jeanna Villaneuva",
+        score: 42,
+        id: 3,
+    },
+];
+
+
 // ******  Header  ***** //
 function Header(props) {
     return (
@@ -59,8 +80,9 @@ function Application(props) {
             <Header title={props.title} />
 
             <div className="players">
-                <Player name="Seth Boudsady" score={31} />
-                <Player name="Fanny Yan" score={33} />
+                {props.players.map(function(player){
+                    return <Player name={player.name} score={player.score} key={player.id} />
+                })}
             </div>
         </div>
     );
@@ -68,6 +90,11 @@ function Application(props) {
 
 Application.propTypes = {
     title: PropTypes.string,
+    players: PropTypes.arrayOf(PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        score: PropTypes.number.isRequired,
+        id: PropTypes.number.isRequired,
+    })).isRequired,
 };
 
 Application.defaultProps = {
@@ -75,4 +102,4 @@ Application.defaultProps = {
 }
 
 
-ReactDOM.render(<Application />, document.getElementById('container'));
+ReactDOM.render(<Application players={PLAYERS}/>, document.getElementById('container'));
