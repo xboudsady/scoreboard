@@ -37,14 +37,19 @@ Header.propTypes = {
 
 class Counter extends React.Component {
     static propTypes = {
-        score: PropTypes.number.isRequired,
+        
+    }
+
+    constructor() {
+        super();
+        this.state = { score: 0};
     }
 
     render() {
         return (
             <div className="counter">
                 <button className="counter-action decrement"> - </button>
-                <div className="counter-score"> {this.props.score} </div>
+                <div className="counter-score"> {this.state.score} </div>
                 <button className="counter-action increment"> + </button>
             </div>
         );
@@ -62,7 +67,7 @@ function Player(props) {
                 {props.name}
             </div>
             <div className="player-score">
-                <Counter score={props.score} />
+                <Counter />
             </div>
         </div>
     );
